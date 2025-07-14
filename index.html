@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Travel Agentic AI</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+</head>
+<body class="relative flex flex-col min-h-screen bg-[#c8d8e4] overflow-x-hidden">
+
+  <!-- ✅ Full Background Image -->
+  <div class="fixed inset-0 z-0 pointer-events-none">
+    <img src="background.jpg" alt="Background"
+         class="w-full h-full object-cover blur-sm brightness-90" />
+  </div>
+
+<header class="bg-teal-800 md:bg-teal-800/90 md:backdrop-blur-md text-white flex justify-between border border-l-white items-center px-4 py-3 mx-2 mt-2 rounded-full shadow-lg relative z-50"> 
+  <div class="font-bold bg-gray-100 text-black px-4 py-2 ml-4 rounded-xl shadow animate-pulse"><a href="index.html">TragencyAI</a></div>
+
+  <nav class="hidden md:flex space-x-4 items-center mr-6 gap-4 relative">
+    <a href="travel.html" class="text-white px-6 py-1 rounded-xl hover:bg-[#9bbdbd] transition font-semibold">Travel Agent</a>
+    <a href="budget.html" class="text-white px-6 py-1 rounded-xl hover:bg-[#9bbdbd] transition font-semibold">Budget Planner</a>
+    <a href="visa.html" class="text-white px-6 py-1 rounded-xl hover:bg-[#9bbdbd] transition font-semibold">Visa Agent</a>
+    <a href="#" id="desktop-login" class="text-white px-6 py-1 rounded-xl hover:bg-[#9bbdbd] transition font-semibold flex items-center gap-2 cursor-pointer">
+      <span id="desktop-login-text">Login</span>
+    </a>
+
+    <!-- Desktop Profile Dropdown -->
+    <div id="profile-dropdown" class="absolute right-0 top-16 bg-white text-black p-4 rounded shadow hidden">
+      <p id="user-email" class="mb-2"></p>
+      <button id="logout-btn" class="text-red-600 font-bold">Logout</button>
+    </div>
+  </nav>
+
+  <div class="md:hidden relative">
+    <button id="menu-button" class="bg-white hover:bg-[#9bbdbd] text-black px-4 py-2 rounded-full shadow focus:outline-none">☰</button>
+    
+    <div id="mobile-menu" class="fixed top-0 right-0 w-64 h-full bg-gray-100/80 backdrop-blur-md text-black shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out rounded-l-2xl z-50">
+      <div class="flex justify-between items-center px-4 py-3 border-b border-gray-300">
+        <span class="font-bold text-lg">Menu</span>
+        <button id="close-menu" class="text-3xl font-bold hover:text-red-600">&times;</button>
+      </div>
+      <nav class="flex flex-col px-6 py-4 space-y-4 text-lg font-medium gap-4 relative">
+        <a href="index.html" class="text-teal-700 hover:text-black transition">Home</a>
+        <a href="travel.html" class="text-teal-700 hover:text-black transition">Travel Agent</a>
+        <a href="visa.html" class="text-teal-700 hover:text-black transition">Visa Agent</a>
+        <a href="budget.html" class="text-teal-700 hover:text-black transition">Budget Planner</a>
+        <a href="packing.html" class="text-teal-700 hover:text-black transition">Packing Agent</a>
+        <a href="#" id="mobile-login" class="text-teal-700 hover:text-black transition flex items-center gap-2 cursor-pointer">
+          <span id="mobile-login-text">Login</span>
+        </a>
+
+        <!-- Mobile Profile Dropdown -->
+        <div id="profile-dropdown-mobile" class="mt-2 bg-white text-black p-4 rounded shadow hidden">
+          <p id="user-email-mobile" class="mb-2"></p>
+          <button id="logout-btn-mobile" class="text-red-600 font-bold">Logout</button>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+<!-- main section-->
+<main class="flex flex-col justify-between min-h-screen">
+<section class="px-6 pt-4 md:pt-12 pb-2 md:pb-8 ">
+<div class="bg-[#eae2dd] w-auto rounded-lg m-8 drop-shadow-lg transition-all duration-300 transform hover:scale-90 hover:shadow-xl cursor-pointer px-4 py-4 md:py-6">
+  <!-- Flex layout -->
+  <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+    
+    <!-- Logo -->
+    <p class="text-lg sm:text-2xl font-bold text-[#225166]">TragencyAI</p>
+
+<!-- Button Row: Rotating + Staggered -->
+<div class="flex flex-row flex-wrap justify-center gap-4">
+  <!-- Rotating Text Box -->
+   <div class="relative overflow-hidden bg-[#658354] text-[#ddead1] font-semibold rounded-lg px-6 py-2 sm:px-10 sm:py-4 border border-white text-center md:min-w-[140px] min-w-[120px] ">
+      <div id="rotating-text" class="absolute inset-0 flex flex-col text-sm  md:text-lg italic transition-transform duration-500 ease-in-out ml-2">
+      <span class="text-item pt-2">Tourism</span>
+      <span class="text-item pt-2">Expert Planner</span>
+      <span class="text-item pt-2">Insightful</span>
+      <span class="text-item pt-2">Artificial</span>
+      <span class="text-item pt-2">Technology</span>
+      <span class="text-item pt-2">Intelligence</span>
+      </div>
+   </div>
+
+  <!-- Staggered Button -->
+   <div class="relative bg-[#9eb589] text-[#S47734] rounded-lg border border-white px-4 py-2 sm:px-4 sm:py-2 text-sm sm:text-xl font-semibold italic text-center min-w-[110px] sm:min-w-[140px] sm:h-12 overflow-hidden">
+    <div id="staggered-text" class="flex gap-1"></div>
+     </div>
+   </div>
+  </div>
+
+  <!-- Quote -->
+  <p class="pt-4 text-sm sm:text-xl md:text-lg font-medium text-[#1f3b11] text-center fade-in italic max-w-[90%] mx-auto md:px-6">
+    Unlike traditional chatbots, our agents are purpose-driven and intelligent, each with a specialized role. They don’t just answer — they act on your goals.
+  </p>
+</div>
+
+ <!-- middle section-->
+<div class="bg-[#f5f5dc] h-90 w-auto rounded-lg m-8 drop-shadow-lg transition-all duration-300 transform hover:scale-104 hover:shadow-xl cursor-pointer backdrop-blur-lg">
+   <h1 class=" md:pt-6 text-[#4e2e19] italic p-4 text-md sm:text-xl font-serif font-semibold fade-in text-center bg-[#dbc2ab] rounded-lg"> ✨Welcome to TragencyAI — Your Smart Travel Companion Powered by Agentic AI <h2>
+   <div class="flex justify-center px-4">
+     <div class=" text-[#080202] italic sm:p-4  text-wrap text-md sm:text-xl font-semibold  sm:max-w-6xl  md:h-auto  leading-relaxed">
+      <span id="typed-paragraph"></span><span class="ml-1 animate-ping">|</span>
+     </div>
+   </div> 
+
+</div>
+</div>
+<!-- 4 Cards Section-->
+<div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-0 gap-y-1 px-6 py-10 place-items-center font-semibold font-serif">
+  <!-- Card 1 -->
+  <a href="travel.html" class="block">
+    <div class="relative h-60 w-80 rounded-xl m-8 pt-8 text-[#09291d] italic place-items-center overflow-hidden drop-shadow-lg transition-transform duration-300 hover:rotate-2 hover:scale-105 hover:shadow-[0_0_20px_#d8b08c,0_0_40px_#b08968] cursor-pointer">
+      <div class="absolute inset-0 z-0">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTtkB3Rtu_0JYvuXFp4vaXg7qefBDf6kVLdw&s" alt="bg" class="w-full h-full object-cover blur-[2px] brightness-90" />
+      </div>
+      <div class="relative z-10 justify-center">
+        <p class="text-xl ml-20"><span class="bg-[#f3a07a] rounded-md px-4">Trip Planner</span></p>
+        <p class="text-md text-center pt-4 text-[#ccf0f0] font-serif"> Your personalized AI Expert  </p>
+        <p class=" pt-2 m-2 text-[#142057] text-wrap text-md text-center font-normal"> From beaches to mountains, get your dream trip planned! Our agent crafts personalized itineraries with insider tips, places to visit, and activities to enjoy. Just share your destination! </p>
+      </div>
+    </div>
+  </a>
+
+  <!-- Card 2 -->
+  <a href="budget.html" class="block">
+    <div class="relative h-60 w-80 rounded-xl m-8 pt-8 text-[#2e114e] italic place-items-center overflow-hidden drop-shadow-lg transition-transform duration-300 hover:rotate-2 hover:scale-105 hover:shadow-[0_0_20px_#c9a57f,0_0_40px_#8b6f47] cursor-pointer">
+      <div class="absolute inset-0 z-0">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcKQ0TuuWVCA7algBAy4NkBZMys8yqcdyU9g&s" alt="bg" class="w-full h-full object-cover blur-[2px] brightness-90" />
+      </div>
+      <div class="relative z-10">
+        <p class="text-xl ml-16"><span class="bg-[#f3a07a] rounded-md px-4">Budget Planner</span></p>
+        <p class=" text-center pt-4 text-[#ccf0f0] font-serif "> Your personalized Budget Planner</p>
+        <p class="  m-2 text-[#07200f] text-wrap text-md text-center font-normal">This smart agent breaks down your travel expenses — flights, hotels, food, and activities — into a clear, easy-to-understand estimate so you can budget smarter and travel stress-free. </p>
+      </div>
+    </div>
+  </a>
+
+  <!-- Card 3 -->
+  <a href="packing.html" class="block">
+    <div class="relative h-60 w-80 rounded-xl m-8 pt-8 text-[#101344] italic place-items-center overflow-hidden drop-shadow-lg transition-transform duration-300 hover:rotate-2 hover:scale-105 hover:shadow-[0_0_20px_#e6c07b,0_0_40px_#b98e57] cursor-pointer">
+      <div class="absolute inset-0 z-0">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTricrGx7v-Uc3AMWya4Vdvb-MXZFwp9NWoxQ&s" alt="bg" class="w-full h-full object-cover blur-[2px] brightness-90" />
+      </div>
+      <div class="relative z-10">
+        <p class="text-xl ml-16"><span class="bg-[#f3a07a] rounded-md px-4">Packing Agent</span></p>
+        <p class="text-md text-center pt-4 text-[#a0f1d6] font-serif"> Your Packing Companion </p>
+        <p class="m-2 text-[#fff] text-wrap text-md text-center font-normal"> Get a personalized packing list based on your destination, trip duration, and weather — all generated by AI. Whether it's a weekend getaway or a two-week trek, you’ll be fully prepared </p>
+      </div>
+    </div>
+  </a>
+
+  <!-- Card 4 -->
+  <a href="visa.html" class="block">
+    <div class="relative h-60 w-80 rounded-xl m-8 pt-8 text-[#080606] italic place-items-center overflow-hidden drop-shadow-lg transition-transform duration-300 hover:rotate-2 hover:scale-105 hover:shadow-[0_0_20px_#a47551,0_0_40px_#6f4e37] cursor-pointer">
+      <div class="absolute inset-0 z-0">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz0h5VADohH1QGshAumAOAU3TYVTdTQCeVBw&s" alt="bg" class="w-full h-full object-cover blur-[2px] brightness-90" />
+      </div>
+      <div class="relative z-10">
+        <p class="text-xl ml-24"><span class="bg-[#f3a07a] rounded-md px-4">Visa Agent</span></p>
+        <p class=" text-center pt-4 text-[#a0f1d6] font-serif "> Your Visa Supporter</p>
+        <p class="  m-2 text-[#0e0303] text-wrap text-md text-center font-normal">Tell it where you’re from and where you're going — this agent instantly tells you the visa requirements, documents needed, and helpful official links. No more digging through embassy sites! </p>
+      </div>
+    </div>
+  </a>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-teal-800 flex flex-col items-center sm:flex-wrap gap-8 p-8 backdrop-blur-lg">
+  <div class="pb-4 text-center">
+    <p class="font-bold text-lg text-white">About Us | Contact | © 2025 TragencyAI.in</p>
+  </div>
+
+  <!-- Main Sections -->
+  <div class="w-full flex flex-col md:flex-row justify-around items-start gap-12 px-4 text-left text-white">
+    
+    <!-- About Us: shifted left -->
+    <div class="md:ml-12 flex-1 max-w-sm">
+      <h4 class="font-bold mb-4">About Us</h4>
+      <p class="font-sans leading-relaxed">
+        We are creating an intelligent AI-powered travel assistant designed to help you plan, organise, and simplify your trips.
+        From personalised itineraries and smart budget planning to visa assistance — everything is generated with the <a class="font-serif font-semibold italic"> power of Agentic AI</a> ,
+        making your travel experience effortless and stress-free.
+      </p>
+      <div class="mt-4">
+        <p class="font-semibold">Nisha Mallick</p>
+        <p class="hover:text-[#2bffdc] cursor-pointer transition-colors duration-300">The Project Manager</p>
+        <p class="hover:text-[#2bffdc] cursor-pointer transition-colors duration-300">and Front-end Developer</p>
+      </div>
+    </div>
+
+    <!-- Team Members: centered -->
+    <div class="flex-1 md:ml-40 max-w-sm">
+      <h4 class="font-bold mb-4">Team Members</h4>
+      <ul>
+        <li class="font-semibold">Ujjayini Banerjee</li>
+        <li class="hover:text-[#2bffdc] cursor-pointer transition-colors duration-300">The Content Strategist and</li>
+        <li class="hover:text-[#2bffdc] cursor-pointer transition-colors duration-300">Back-end Developer</li>
+
+        <li class="mt-4 font-semibold">Roshani Shaw</li>
+        <li class="hover:text-[#2bffdc] cursor-pointer transition-colors duration-300">The Content writer and Data</li>
+        <li class="hover:text-[#2bffdc] cursor-pointer transition-colors duration-300">Analyst</li>
+
+        <li class="mt-4 font-semibold">Riya Biswas</li>
+        <li class="hover:text-[#2bffdc] cursor-pointer transition-colors duration-300">The Designer and QA</li>
+        <li class="hover:text-[#2bffdc] cursor-pointer transition-colors duration-300">Tester</li>
+      </ul>
+    </div>
+
+    <!-- Contact: aligned right -->
+    <div class="md:mr-0 flex-1 max-w-sm">
+      <h4 class="font-bold mb-4">Contact</h4>
+      <ul>
+        <li>
+          Email:
+          <a class="hover:text-[#2bffdc] cursor-pointer transition-colors duration-300 text-white">
+            novaistic2025@gmail.com
+          </a>
+        </li>
+        <li class="mt-4">Phone :</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+</main>
+
+<!-- ✅ Login Popup with Email/Password, Google & Close -->
+<div id="login-popup" class="fixed inset-0 bg-white/50 hidden place-items-center justify-center z-50">
+  <div class="bg-white p-8 rounded-xl shadow-lg w-[350px] space-y-6 mt-12 text-white relative">
+
+    <h2 class="text-2xl font-serif font-bold text-center text-black">Welcome back</h2>
+    <p class="text-center text-gray-900">Start your website in seconds.</p>
+
+    <div class="space-y-4">
+      <div>
+        <label class="block text-sm mb-1">Email</label>
+        <input id="login-email" type="email" placeholder="name@company.com" class="w-full px-3 py-2 text-black rounded bg-white border border-gray-700 focus:outline-none focus:ring focus:ring-teal-500">
+      </div>
+      <div>
+        <label class="block text-sm mb-1">Password</label>
+        <input id="login-password" type="password" placeholder="********" class="w-full px-3 py-2 text-black rounded bg-white border border-gray-700 focus:outline-none focus:ring focus:ring-teal-500">
+      </div>
+    </div>
+
+    <div class="flex gap-2 mt-4">
+      <button id="email-login" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded">Login</button>
+      <button id="email-register" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded">Register</button>
+    </div>
+
+    <div class="flex items-center my-2">
+      <div class="flex-1 h-px bg-gray-600"></div>
+      <span class="px-2 text-gray-400 text-sm">or</span>
+      <div class="flex-1 h-px bg-gray-600"></div>
+    </div>
+
+    <button id="google-login" class="bg-white border border-gray-300 flex items-center justify-center gap-2 py-2 px-4 rounded-md hover:bg-gray-100 w-full text-black">
+      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-5 h-5" />
+      Sign in with Google
+    </button>
+
+    <button id="close-login" class="absolute top-2 right-3 text-black hover:text-red-600 text-2xl">&times;</button>
+    
+  </div>
+</div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

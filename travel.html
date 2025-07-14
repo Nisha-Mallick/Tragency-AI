@@ -1,0 +1,195 @@
+<!-- ✅ Final Modified HTML with Full Login & Profile Dropdown Functionality -->
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Travel Agentic AI</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+</head>
+<body class="flex flex-col min-h-screen bg-[#c8d8e4]">
+
+<header class="bg-teal-800 md:bg-teal-800/90 md:backdrop-blur-md text-white flex justify-between border border-l-white items-center px-4 py-3 mx-2 mt-2 rounded-full shadow-lg relative z-50"> 
+  <div class="font-bold bg-gray-100 text-black px-4 py-2 ml-4 rounded-xl shadow animate-pulse"><a href="index.html">TragencyAI</a></div>
+
+  <nav class="hidden md:flex space-x-4 items-center mr-6 gap-4 relative">
+    <a href="budget.html" class="text-white px-6 py-1 rounded-xl hover:bg-[#9bbdbd] transition font-medium font-serif">Budget Planner</a>
+    <a href="packing.html" class="text-white px-6 py-1 rounded-xl hover:bg-[#9bbdbd] transition font-medium font-serif">Packing Agent</a>
+    <a href="#" id="desktop-login" class="text-white px-6 py-1 rounded-xl hover:bg-[#9bbdbd] transition font-medium font-serif flex items-center gap-2 cursor-pointer">
+      <span id="desktop-login-text">Login</span>
+    </a>
+
+    <!-- Desktop Profile Dropdown -->
+    <div id="profile-dropdown" class="absolute right-0 top-16 bg-white text-black p-4 rounded shadow hidden">
+      <p id="user-email" class="mb-2"></p>
+      <button id="logout-btn" class="text-red-600 font-bold">Logout</button>
+    </div>
+  </nav>
+
+  <div class="md:hidden relative">
+    <button id="menu-button" class="bg-white hover:bg-[#9bbdbd] text-black px-4 py-2 rounded-full shadow focus:outline-none">☰</button>
+    
+    <div id="mobile-menu" class="fixed top-0 right-0 w-64 h-full bg-gray-100/80 backdrop-blur-md text-black shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out rounded-l-2xl z-50">
+      <div class="flex justify-between items-center px-4 py-3 border-b border-gray-300">
+        <span class="font-bold text-lg">Menu</span>
+        <button id="close-menu" class="text-3xl font-bold hover:text-red-600">&times;</button>
+      </div>
+      <nav class="flex flex-col px-6 py-4 space-y-4 text-lg font-medium gap-4 relative">
+        <a href="index.html" class="text-teal-700 hover:text-black transition">Home</a>
+        <a href="budget.html" class="text-teal-700 hover:text-black transition">Budget Planner</a>
+        <a href="packing.html" class="text-teal-700 hover:text-black transition">Packing Agent</a>
+        <a href="visa.html" class="text-teal-700 hover:text-black transition">Visa Agent</a>
+        <a href="#" class="text-teal-700 hover:text-black transition">Re-Generate</a>
+        <a href="#" id="mobile-login" class="text-teal-700 hover:text-black transition flex items-center gap-2 cursor-pointer">
+          <span id="mobile-login-text">Login</span>
+        </a>
+
+        <!-- Mobile Profile Dropdown -->
+        <div id="profile-dropdown-mobile" class="mt-2 bg-white text-black p-4 rounded shadow hidden">
+          <p id="user-email-mobile" class="mb-2"></p>
+          <button id="logout-btn-mobile" class="text-red-600 font-bold">Logout</button>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+
+<main class="flex flex-1 flex-col md:flex-row p-4 gap-8">
+  <aside class="hidden md:flex flex-col bg-[#e8e8f8] md:w-1/4 border border-[#a9c9e2] p-6 pt-24 gap-12 ml-4 rounded-lg">
+    <a href="index.html" class="block border border-[#123677] text-[#123677] text-center px-4 py-2 rounded hover:bg-[#82a4e4] hover:text-white font-serif font-semibold">Home</a>
+    <a href="budget.html" class="block border border-[#123677] text-[#123677] text-center px-4 py-2 rounded hover:bg-[#82a4e4] hover:text-white font-serif font-semibold">Budget Planner</a>
+    <a href="visa.html" class="block border border-[#123677] text-[#123677] text-center px-4 py-2 rounded hover:bg-[#82a4e4] hover:text-white font-serif font-semibold">Visa Agent</a>
+    <a href="#" class="block border border-[#123677] text-[#123677] text-center px-4 py-2 rounded hover:bg-[#82a4e4] hover:text-white font-serif font-semibold">Re-Generate</a>
+  </aside>
+
+  <section class="flex flex-col border border-[#a9c9e2] p-6 bg-gray-50 flex-1 w-full md:max-w-[1150px] justify-center mr-4 mx-auto px-4 md:px-0 rounded-lg">
+    <div id="chat-window"
+  class="flex-1 bg-white border border-gray-300 rounded-md p-4 overflow-y-auto space-y-4
+         min-h-[400px] md:min-h-0 max-h-[400px]">
+      <p class="text-center text-gray-500 italic">Start your conversation with our AI...</p>
+      <ul id="past-trips" class="space-y-2 w-full md:max-w-[800px] mx-auto mt-4"></ul>
+    </div>
+
+    <form id="trip-form" class="flex justify-center mt-4 w-full">
+      <div class="flex w-full md:w-[90%] lg:w-[90%] gap-2 md:gap-4">
+        <textarea id="trip-input" rows="1" placeholder="Plan your trip with our Agent...." class="flex-1 border border-gray-400 rounded-md p-3 resize-none bg-pink-100 italic"></textarea>
+        <button type="submit" class="bg-pink-400 px-8 py-2 rounded border border-black font-bold hover:bg-pink-200 font-serif">SEND</button>
+      </div>
+    </form>
+    <div id="trip-result" class="mt-4"></div>
+    <div id="error" class="text-red-600 mt-2 hidden"></div>
+    <div id="loading" class="text-gray-500 mt-2 hidden">Loading...</div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-teal-800 flex flex-col items-center gap-8 p-8 backdrop-blur-lg">
+  <div class="pb-4 text-center">
+    <p class="font-bold text-lg text-white">About Us | Contact | © 2025 TragencyAI.in</p>
+  </div>
+
+  <!-- Main Sections -->
+  <div class="w-full flex flex-col md:flex-row justify-around items-start gap-12 px-4 text-left text-white">
+    
+    <!-- About Us: shifted left -->
+    <div class="md:ml-12 flex-1 max-w-sm">
+      <h4 class="font-bold mb-4">About Us</h4>
+      <p class="font-sans leading-relaxed">
+        We are creating an intelligent AI-powered travel assistant designed to help you plan, organise, and simplify your trips.
+        From personalised itineraries and smart budget planning to visa assistance — everything is generated with the <a class="font-serif font-semibold italic"> power of Agentic AI</a> ,
+        making your travel experience effortless and stress-free.
+      </p>
+      <div class="mt-4">
+        <p class="font-semibold">Nisha Mallick</p>
+        <p class="hover:text-[#2bffdc] cursor-pointer transition-colors duration-300">The Project Manager</p>
+        <p class="hover:text-[#2bffdc] cursor-pointer transition-colors duration-300">and Front-end Developer</p>
+      </div>
+    </div>
+
+    <!-- Team Members: centered -->
+    <div class="flex-1 md:ml-40 max-w-sm">
+      <h4 class="font-bold mb-4">Team Members</h4>
+      <ul>
+        <li class="font-semibold">Ujjayini Banerjee</li>
+        <li class="hover:text-[#2bffdc] cursor-pointer transition-colors duration-300">The Content Strategist and</li>
+        <li class="hover:text-[#2bffdc] cursor-pointer transition-colors duration-300">Back-end Developer</li>
+
+        <li class="mt-4 font-semibold">Roshani Shaw</li>
+        <li class="hover:text-[#2bffdc] cursor-pointer transition-colors duration-300">The Content writer and Data</li>
+        <li class="hover:text-[#2bffdc] cursor-pointer transition-colors duration-300">Analyst</li>
+
+        <li class="mt-4 font-semibold">Riya Biswas</li>
+        <li class="hover:text-[#2bffdc] cursor-pointer transition-colors duration-300">The Designer and QA</li>
+        <li class="hover:text-[#2bffdc] cursor-pointer transition-colors duration-300">Tester</li>
+      </ul>
+    </div>
+
+    <!-- Contact: aligned right -->
+    <div class="md:mr-0 flex-1 max-w-sm">
+      <h4 class="font-bold mb-4">Contact</h4>
+      <ul>
+        <li>
+          Email:
+          <a class="hover:text-[#2bffdc] cursor-pointer transition-colors duration-300 text-white">
+            novaistic2025@gmail.com
+          </a>
+        </li>
+        <li class="mt-4">Phone :</li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<!-- ✅ Login Popup with Email/Password, Google & Close -->
+<div id="login-popup" class="fixed inset-0 bg-white/50 hidden place-items-center justify-center z-50">
+  <div class="bg-white p-8 rounded-xl shadow-lg w-[350px] space-y-6 mt-12 text-white relative">
+
+    <h2 class="text-2xl font-serif font-bold text-center text-black">Welcome back</h2>
+    <p class="text-center text-gray-900">Start your website in seconds.</p>
+
+    <div class="space-y-4">
+      <div>
+        <label class="block text-sm mb-1">Email</label>
+        <input id="login-email" type="email" placeholder="name@company.com" class="w-full px-3 py-2 text-black rounded bg-white border border-gray-700 focus:outline-none focus:ring focus:ring-teal-500">
+      </div>
+      <div>
+        <label class="block text-sm mb-1">Password</label>
+        <input id="login-password" type="password" placeholder="********" class="w-full px-3 py-2 text-black rounded bg-white border border-gray-700 focus:outline-none focus:ring focus:ring-teal-500">
+      </div>
+    </div>
+
+    <div class="flex gap-2 mt-4">
+      <button id="email-login" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded">Login</button>
+      <button id="email-register" class="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded">Register</button>
+    </div>
+
+    <div class="flex items-center my-2">
+      <div class="flex-1 h-px bg-gray-600"></div>
+      <span class="px-2 text-gray-400 text-sm">or</span>
+      <div class="flex-1 h-px bg-gray-600"></div>
+    </div>
+
+    <button id="google-login" class="bg-white border border-gray-300 flex items-center justify-center gap-2 py-2 px-4 rounded-md hover:bg-gray-100 w-full text-black">
+      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-5 h-5" />
+      Sign in with Google
+    </button>
+
+    <button id="close-login" class="absolute top-2 right-3 text-black hover:text-red-600 text-2xl">&times;</button>
+    
+  </div>
+</div>
+
+<!-- Hidden login reminder popup -->
+<div id="login-reminder-popup" class="fixed inset-0 bg-white/50 hidden place-items-center justify-center z-50 ">
+  <div class="bg-white rounded-lg p-8 max-w-xs text-center mt-12">
+    <p class="mb-4 font-semibold text-gray-800">You should login to save your chat history!</p>
+    <button id="login-reminder-ok" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">OK</button>
+  </div>
+</div>
+
+<script type="module" src="js/travel.js"></script>
+</body>
+</html>
